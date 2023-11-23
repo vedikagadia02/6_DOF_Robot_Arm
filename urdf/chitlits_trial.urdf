@@ -1,0 +1,352 @@
+<robot name="chitlits_trial">
+
+<link name="dummy_link">
+ <pose>0 0 0 0 0 0</pose>
+</link>
+
+<joint name="dummy_joint" type="fixed">
+    <parent link="dummy_link"/>
+    <child link="base"/>
+</joint>
+
+<link name="base">
+<visual>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="package://chitlits_trial/meshes/base.stl"/>
+</geometry>
+<material name="base_material">
+<color rgba="0.97254901960784312376 0.51372549019607838261 0 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="package://chitlits_trial/meshes/base.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="-3.4721103636388965972e-16 2.480225546764055279e-16 0.40689387077424016281" rpy="0 0 0"/>
+<mass value="10063.934292082562024" />
+<inertia ixx="7263.5294097008236349" ixy="-0.00032522257515168307264"  ixz="-4.8678224004370786453e-13" iyy="7263.5294167700885737" iyz="6.21650784784151612e-13" izz="5383.5461450290385983" />
+</inertial>
+</link>
+
+<link name="link1">
+<visual>
+<origin xyz="0.24999999999999997224 -7.6540424946709590856e-18 -0.29999999999999982236" rpy="0 -0 -3.3857514945752394068e-35" />
+<geometry>
+<mesh filename="package://chitlits_trial/meshes/link1.stl"/>
+</geometry>
+<material name="link1_material">
+<color rgba="0.97254901960784312376 0.52941176470588235947 0.0039215686274509803377 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="0.24999999999999997224 -7.6540424946709590856e-18 -0.29999999999999982236" rpy="0 -0 -3.3857514945752394068e-35" />
+<geometry>
+<mesh filename="package://chitlits_trial/meshes/link1.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0.32784176631715378214 0.038920883158576814742 -0.14999999999999982792" rpy="0 0 0"/>
+<mass value="108.38518616081056223" />
+<inertia ixx="2.5749260237233126958" ixy="-0.72624041310098597091"  ixz="-1.5403842340630661285e-16" iyy="9.113147949667252945" iyz="-1.6211955312260878129e-16" izz="10.195161860873735549" />
+</inertial>
+</link>
+
+<link name="link2">
+<visual>
+<origin xyz="0 -0.25 0.25" rpy="1.570796326794896558 -2.9399051064082344377e-33 -2.3111168697244180257e-33" />
+<geometry>
+<mesh filename="package://chitlits_trial/meshes/link2.stl"/>
+</geometry>
+<material name="link2_material">
+<color rgba="0.97254901960784312376 0.52941176470588235947 0.0039215686274509803377 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="0 -0.25 0.25" rpy="1.570796326794896558 -2.9399051064082344377e-33 -2.3111168697244180257e-33" />
+<geometry>
+<mesh filename="package://chitlits_trial/meshes/link2.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="-9.2361034132500580372e-17 -1.1421291964584714407 0.10368062053122922839" rpy="0 0 0"/>
+<mass value="237.44296157577127815" />
+<inertia ixx="122.91677476896329324" ixy="-5.8788464249770894274e-15"  ixz="2.0387310133285850443e-16" iyy="4.3328292420202716428" iyz="-4.3426591926983819647" izz="122.1235389767537356" />
+</inertial>
+</link>
+
+<link name="link3">
+<visual>
+<origin xyz="0.24999999999999994449 0 0.2999999999999999889" rpy="1.570796326794896558 -3.7366160927800095449e-34 1.867044587947701077e-19" />
+<geometry>
+<mesh filename="package://chitlits_trial/meshes/link3.stl"/>
+</geometry>
+<material name="link3_material">
+<color rgba="0.97254901960784312376 0.52941176470588235947 0.0039215686274509803377 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="0.24999999999999994449 0 0.2999999999999999889" rpy="1.570796326794896558 -3.7366160927800095449e-34 1.867044587947701077e-19" />
+<geometry>
+<mesh filename="package://chitlits_trial/meshes/link3.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0.46295653182151164096 0.20832906847110768678 0.14999999999999999445" rpy="0 0 0"/>
+<mass value="165.68203842422872185" />
+<inertia ixx="13.428943187868359388" ixy="-7.8941258720254028347"  ixz="-6.418900697331053997e-31" iyy="16.101468492203519389" iyz="3.6561363365381416552e-16" izz="27.1554359728377257" />
+</inertial>
+</link>
+
+<link name="link4">
+<visual>
+<origin xyz="-7.8886090522101180541e-31 -8.8817841970012523234e-16 -0.25" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://chitlits_trial/meshes/link4.stl"/>
+</geometry>
+<material name="link4_material">
+<color rgba="0.97254901960784312376 0.52941176470588235947 0.0039215686274509803377 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="-7.8886090522101180541e-31 -8.8817841970012523234e-16 -0.25" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://chitlits_trial/meshes/link4.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="-0.0047018568211054439718 -8.8384806358938191283e-16 0.096147216998349549488" rpy="0 0 0"/>
+<mass value="32.624999999999978684" />
+<inertia ixx="1.4681099117915823449" ixy="-1.5742865230588511764e-16"  ixz="0.02360072132872712003" iyy="1.546608844951965267" iyz="-2.6899127873507955895e-16" izz="0.56787393316038248248" />
+</inertial>
+</link>
+
+<link name="link5">
+<visual>
+<origin xyz="0 0 -0.25000000000000005551" rpy="-1.570796326794896558 9.5609882993221505853e-33 -2.2083719037794914329e-19" />
+<geometry>
+<mesh filename="package://chitlits_trial/meshes/link5.stl"/>
+</geometry>
+<material name="link5_material">
+<color rgba="0.61568627450980395466 0.81176470588235294379 0.92941176470588238168 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 -0.25000000000000005551" rpy="-1.570796326794896558 9.5609882993221505853e-33 -2.2083719037794914329e-19" />
+<geometry>
+<mesh filename="package://chitlits_trial/meshes/link5.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0.17703772124919697761 5.595728153513087518e-17 -0.12500000000000002776" rpy="0 0 0"/>
+<mass value="31.192961575771281701" />
+<inertia ixx="0.36141661663511881475" ixy="-1.2831374211296090066e-18"  ixz="2.9832874238744311209e-31" iyy="1.1066079217708209015" iyz="3.9227349424050843949e-33" izz="1.1910347549464153083" />
+</inertial>
+</link>
+
+<link name="link6">
+<visual>
+<origin xyz="0 0 0.25" rpy="1.570796326794896558 1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://chitlits_trial/meshes/link6.stl"/>
+</geometry>
+<material name="link6_material">
+<color rgba="0.84705882352941175295 0.35686274509803922461 0.019607843137254901689 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 0.25" rpy="1.570796326794896558 1.570796326794896558 0" />
+<geometry>
+<mesh filename="package://chitlits_trial/meshes/link6.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="-4.5593786108800530276e-17 -2.6074862316063836122e-17 0.031927702218243952936" rpy="0 0 0"/>
+<mass value="22.160192121143595045" />
+<inertia ixx="0.6229099285959684984" ixy="1.0843057170946698874e-17"  ixz="-1.5536722093186185276e-20" iyy="0.62290992859596827635" iyz="5.1309436269580543285e-19" izz="0.39265775094643440291" />
+</inertial>
+</link>
+
+<joint name="joint6" type="revolute">
+<origin xyz="0.45000000000000039968 0 -0.12500000000000002776" rpy="1.5707963267949085484 1.5031124846429122499 -1.5707963267949200947" />
+<parent link="link5" />
+<child link="link6" />
+<axis xyz="0 0 1"/>
+<limit effort="10" velocity="20" lower="0" upper="6.283185307179586232"/>
+<joint_properties friction="0.0"/>
+</joint>
+
+<joint name="joint5" type="revolute">
+<origin xyz="-0.13499999999999978684 -1.7763568394002504647e-15 0.24999999999999955591" rpy="-8.5815761399436059717e-17 -1.5707963267948934494 0" />
+<parent link="link4" />
+<child link="link5" />
+<axis xyz="0 0 1"/>
+<limit effort="10" velocity="20" lower="-1.570796326794896558" upper="1.570796326794896558"/>
+<joint_properties friction="0.0"/>
+</joint>
+
+<joint name="joint4" type="revolute">
+<origin xyz="1.000000000000000222 0.60000000000000053291 0.14999999999999985567" rpy="3.141592653589793116 -1.5707963267948956698 0" />
+<parent link="link3" />
+<child link="link4" />
+<axis xyz="0 0 1"/>
+<limit effort="100" velocity="20" lower="0" upper="6.283185307179586232"/>
+<joint_properties friction="0.0"/>
+</joint>
+
+<joint name="joint3" type="revolute">
+<origin xyz="0 -2.0000000000000008882 -0.30000000000000021094" rpy="-8.1152078391270283561e-16 6.7835652209614697612e-16 0.0059031883667002450072" />
+<parent link="link2" />
+<child link="link3" />
+<axis xyz="0 0 1"/>
+<limit effort="100000000" velocity="20" lower="0" upper="6.283185307179586232"/>
+<joint_properties friction="0.0"/>
+</joint>
+
+<joint name="joint2" type="revolute">
+<origin xyz="0.50000000000000843769 0.15000000000000518474 -0.14999999999999991118" rpy="-1.570796326794896558 -2.3887450761723675576e-17 1.0061015326711405034e-16" />
+<parent link="link1" />
+<child link="link2" />
+<axis xyz="0 0 1"/>
+<limit effort="1000000" velocity="20" lower="-1.570796326794896558" upper="3.141592653589793116"/>
+<joint_properties friction="0.0"/>
+</joint>
+
+<joint name="joint1" type="revolute">
+<origin xyz="8.6042284408449631883e-15 1.0699669637405741924e-17 3.0499999999999998224" rpy="-1.4752675056804208205e-18 -2.2950085198369954286e-17 -1.0412155812845410196e-17" />
+<parent link="base" />
+<child link="link1" />
+<axis xyz="0 0 1"/>
+<limit effort="10000" velocity="20" lower="0" upper="6.283185307179586232"/>
+<joint_properties friction="100"/>
+</joint>
+
+
+
+<transmission name="joint1_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    
+    <joint name="joint1">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    
+    <actuator name="joint1_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+</transmission>
+
+<transmission name="joint2_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    
+    <joint name="joint2">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    
+    <actuator name="joint2_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+</transmission>
+
+<transmission name="joint3_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    
+    <joint name="joint3">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    
+    <actuator name="joint3_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+</transmission>
+
+<transmission name="joint4_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    
+    <joint name="joint4">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    
+    <actuator name="joint4_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+</transmission>
+
+<transmission name="joint5_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    
+    <joint name="joint5">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    
+    <actuator name="joint5_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+</transmission>
+
+<transmission name="joint6_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    
+    <joint name="joint6">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    
+    <actuator name="joint6_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+</transmission>
+
+<!-- GRAVITY -->
+
+<gazebo reference="base">
+    <mu1>5.0</mu1>
+    <mu2>5.0</mu2>
+    <!-- <turnGravityOff>true</turnGravityOff> -->
+</gazebo>
+
+<gazebo reference="link1">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <!-- <turnGravityOff>true</turnGravityOff> -->
+</gazebo>
+
+<gazebo reference="link2">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <!-- <turnGravityOff>true</turnGravityOff> -->
+</gazebo>
+
+<gazebo reference="link3">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <!-- <turnGravityOff>true</turnGravityOff> -->
+</gazebo>
+
+<gazebo reference="link4">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <!-- <turnGravityOff>true</turnGravityOff> -->
+</gazebo>
+
+<gazebo reference="link5">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <!-- <turnGravityOff>true</turnGravityOff> -->
+</gazebo>
+
+<gazebo reference="link6">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <!-- <turnGravityOff>true</turnGravityOff> -->
+</gazebo>
+
+
+</robot>

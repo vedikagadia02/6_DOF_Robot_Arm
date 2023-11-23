@@ -1,0 +1,41 @@
+chitlits_trial:
+  # default controller
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50
+  
+  # Controller 1
+  joint1_control:
+    type: effort_controllers/JointPositionController
+    joint: joint1
+    pid: {p: 100000, i: 1000, d: 10000}
+
+  # Controller 2
+  joint2_control:
+    type: effort_controllers/JointPositionController
+    joint: joint2
+    pid: {p: 1000000, i: 10000, d: 100000}
+
+  # Controller 3
+  joint3_control:
+    type: effort_controllers/JointPositionController
+    joint: joint3
+    pid: {p: 100000, i: 1000, d: 10000}
+
+  # Controller 4
+  joint4_control:
+    type: effort_controllers/JointPositionController
+    joint: joint4
+    pid: {p: 100000, i: 100, d: 10000}
+
+  # Controller 5
+  joint5_control:
+    type: effort_controllers/JointPositionController
+    joint: joint5
+    pid: {p: 100000, i: 1000, d: 10000}
+
+  # Controller 6
+  joint6_control:
+    type: effort_controllers/JointPositionController
+    joint: joint6
+    pid: {p: 100000, i: 1000, d: 10000}
