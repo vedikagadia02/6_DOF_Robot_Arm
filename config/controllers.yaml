@@ -14,7 +14,7 @@ chitlits_trial:
   joint2_control:
     type: effort_controllers/JointPositionController
     joint: joint2
-    pid: {p: 1000000, i: 10000, d: 100000}
+    pid: {p: 100000, i: 1000, d: 10000}
 
   # Controller 3
   joint3_control:
@@ -26,7 +26,7 @@ chitlits_trial:
   joint4_control:
     type: effort_controllers/JointPositionController
     joint: joint4
-    pid: {p: 100000, i: 100, d: 10000}
+    pid: {p: 100000, i: 1000, d: 10000}
 
   # Controller 5
   joint5_control:

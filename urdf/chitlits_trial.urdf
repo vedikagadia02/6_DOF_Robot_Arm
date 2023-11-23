@@ -175,8 +175,9 @@
 <parent link="link5" />
 <child link="link6" />
 <axis xyz="0 0 1"/>
-<limit effort="10" velocity="20" lower="0" upper="6.283185307179586232"/>
-<joint_properties friction="0.0"/>
+<limit effort="10000" velocity="0.5" lower="0" upper="6.283185307179586232"/>
+<dynamics friction="10.0"/>
+
 </joint>
 
 <joint name="joint5" type="revolute">
@@ -184,8 +185,9 @@
 <parent link="link4" />
 <child link="link5" />
 <axis xyz="0 0 1"/>
-<limit effort="10" velocity="20" lower="-1.570796326794896558" upper="1.570796326794896558"/>
-<joint_properties friction="0.0"/>
+<limit effort="10000" velocity="0.5" lower="-1.570796326794896558" upper="1.570796326794896558"/>
+<dynamics friction="10.0"/>
+
 </joint>
 
 <joint name="joint4" type="revolute">
@@ -193,8 +195,9 @@
 <parent link="link3" />
 <child link="link4" />
 <axis xyz="0 0 1"/>
-<limit effort="100" velocity="20" lower="0" upper="6.283185307179586232"/>
-<joint_properties friction="0.0"/>
+<limit effort="10000" velocity="0.5" lower="0" upper="6.283185307179586232"/>
+<dynamics  friction="10.0"/>
+
 </joint>
 
 <joint name="joint3" type="revolute">
@@ -202,8 +205,9 @@
 <parent link="link2" />
 <child link="link3" />
 <axis xyz="0 0 1"/>
-<limit effort="100000000" velocity="20" lower="0" upper="6.283185307179586232"/>
-<joint_properties friction="0.0"/>
+<limit effort="1000000" velocity="0.5" lower="0" upper="6.283185307179586232"/>
+<dynamics friction="10.0"/>
+
 </joint>
 
 <joint name="joint2" type="revolute">
@@ -211,8 +215,9 @@
 <parent link="link1" />
 <child link="link2" />
 <axis xyz="0 0 1"/>
-<limit effort="1000000" velocity="20" lower="-1.570796326794896558" upper="3.141592653589793116"/>
-<joint_properties friction="0.0"/>
+<limit effort="1000000" velocity="0.5" lower="-1.570796326794896558" upper="3.141592653589793116"/>
+<dynamics  friction="10.0"/>
+
 </joint>
 
 <joint name="joint1" type="revolute">
@@ -220,8 +225,9 @@
 <parent link="base" />
 <child link="link1" />
 <axis xyz="0 0 1"/>
-<limit effort="10000" velocity="20" lower="0" upper="6.283185307179586232"/>
-<joint_properties friction="100"/>
+<limit effort="1000000" velocity="0.5" lower="0" upper="6.283185307179586232"/>
+<dynamics friction="10.0"/>
+
 </joint>
 
 
