@@ -175,8 +175,8 @@
 <parent link="link5" />
 <child link="link6" />
 <axis xyz="0 0 1"/>
-<limit effort="10000" velocity="0.5" lower="0" upper="6.283185307179586232"/>
-<dynamics friction="10.0"/>
+<limit effort="20000" velocity="0.5" lower="0" upper="6.283185307179586232"/>
+<dynamics friction="200.0"/>
 
 </joint>
 
@@ -185,8 +185,8 @@
 <parent link="link4" />
 <child link="link5" />
 <axis xyz="0 0 1"/>
-<limit effort="10000" velocity="0.5" lower="-1.570796326794896558" upper="1.570796326794896558"/>
-<dynamics friction="10.0"/>
+<limit effort="20000" velocity="0.5" lower="-1.570796326794896558" upper="1.570796326794896558"/>
+<dynamics friction="200.0"/>
 
 </joint>
 
@@ -195,8 +195,8 @@
 <parent link="link3" />
 <child link="link4" />
 <axis xyz="0 0 1"/>
-<limit effort="10000" velocity="0.5" lower="0" upper="6.283185307179586232"/>
-<dynamics  friction="10.0"/>
+<limit effort="20000" velocity="0.5" lower="0" upper="6.283185307179586232"/>
+<dynamics  friction="200.0"/>
 
 </joint>
 
@@ -215,8 +215,8 @@
 <parent link="link1" />
 <child link="link2" />
 <axis xyz="0 0 1"/>
-<limit effort="1000000" velocity="0.5" lower="-1.570796326794896558" upper="3.141592653589793116"/>
-<dynamics  friction="10.0"/>
+<limit effort="2000000" velocity="0.5" lower="-1.570796326794896558" upper="3.141592653589793116"/>
+<dynamics  friction="150.0"/>
 
 </joint>
 
