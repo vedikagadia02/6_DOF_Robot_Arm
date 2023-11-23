@@ -3,6 +3,7 @@ from scipy.linalg import pinv
 import matplotlib.pyplot as plt
 import numpy as np
 
+global joint_angles
 theta1, theta2, theta3, theta4, theta5, theta6 = symbols('theta1 theta2 theta3 theta4 theta5 theta6')
 a1, a2, a3, a4, a5, a6 = symbols('a1 a2 a3 a4 a5 a6')
 d1, d2, d3, d4, d5, d6 = symbols('d1 d2 d3 d4 d5 d6')
@@ -93,55 +94,55 @@ def computeJacobian(theta):
 
     return T, J
 
-if __name__ == '__main__':
-    theta_values, x_values, y_values, z_values = circleTrajectory(radius, 2.675, 0, 4.3)
-    vx_values = np.zeros(num_steps)
-    vy_values = np.zeros(num_steps)
-    vz_values = np.zeros(num_steps)
-    current_joint_angles = np.array([theta1, theta2, theta3, theta4, theta5, theta6]) 
+# if __name__ == '__main__':
+theta_values, x_values, y_values, z_values = circleTrajectory(radius, 2.675, 0, 4.3)
+vx_values = np.zeros(num_steps)
+vy_values = np.zeros(num_steps)
+vz_values = np.zeros(num_steps)
+current_joint_angles = np.array([theta1, theta2, theta3, theta4, theta5, theta6]) 
 
-    # Compute x, y, z velocities for each point on the circle
-    for i in range(num_steps):
-        theta = theta_values[i]
-        vx_values[i] = 0
-        vy_values[i] = -radius * np.sin(theta) * 1.25663706144
-        vz_values[i] = radius * np.cos(theta) * 1.25663706144
+# Compute x, y, z velocities for each point on the circle
+for i in range(num_steps):
+    theta = theta_values[i]
+    vx_values[i] = 0
+    vy_values[i] = -radius * np.sin(theta) * 1.25663706144
+    vz_values[i] = radius * np.cos(theta) * 1.25663706144
 
-    joint_velocities = np.zeros((6, len(vx_values)))
-    joint_angles = np.zeros((6, len(vx_values)))
-    end_effector_positions = []
+joint_velocities = np.zeros((6, len(vx_values)))
+joint_angles = np.zeros((6, len(vx_values)))
+end_effector_positions = []
 
-    for i in range(len(vx_values)):
-        T, J = computeJacobian(current_joint_angles)
-        desired_velocity = np.array([vx_values[i], vy_values[i], vz_values[i], 0, 0, 0])
-        J_pinv = pinv(J.astype(float))
-        joint_velocities[:, i] = np.dot(J_pinv, desired_velocity)
-        new_joint_angles = current_joint_angles + joint_velocities[:, i]*dt
-        joint_angles[:, i] = new_joint_angles
-        current_joint_angles = new_joint_angles
-        end_effector_position = T[:3,3]
-        end_effector_positions.append(end_effector_position)
+for i in range(len(vx_values)):
+    T, J = computeJacobian(current_joint_angles)
+    desired_velocity = np.array([vx_values[i], vy_values[i], vz_values[i], 0, 0, 0])
+    J_pinv = pinv(J.astype(float))
+    joint_velocities[:, i] = np.dot(J_pinv, desired_velocity)
+    new_joint_angles = current_joint_angles + joint_velocities[:, i]*dt
+    joint_angles[:, i] = new_joint_angles
+    current_joint_angles = new_joint_angles
+    end_effector_position = T[:3,3]
+    end_effector_positions.append(end_effector_position)
+
+end_effector_positions_array = np.array(end_effector_positions)
+
+X = end_effector_positions_array[:, 0]
+Y = end_effector_positions_array[:, 1]
+Z = end_effector_positions_array[:, 2]
+
+    # fig, axs = plt.subplots(1, 2, figsize=(10, 5))
+
+    # axs[0] = fig.add_subplot(1, 2, 1, projection='3d')
+    # axs[0].set_ylim([0, 10])
+    # axs[0].plot(X, Y, Z)
+    # axs[0].set_box_aspect([1,1,1]) 
+
+    # axs[1] = fig.add_subplot(1, 2, 2)
+    # axs[1].scatter(Y, Z, color='r', marker='o')
+    # axs[1].set_title('2D Scatter Plot')
+    # axs[1].set_xlabel('Y-axis')
+    # axs[1].set_ylabel('Z-axis')
+    # axs[1].grid(True)
+    # axs[1].set_aspect('equal', 'box')
     
-    end_effector_positions_array = np.array(end_effector_positions)
-
-    X = end_effector_positions_array[:, 0]
-    Y = end_effector_positions_array[:, 1]
-    Z = end_effector_positions_array[:, 2]
-
-    fig, axs = plt.subplots(1, 2, figsize=(10, 5))
-
-    axs[0] = fig.add_subplot(1, 2, 1, projection='3d')
-    axs[0].set_ylim([0, 10])
-    axs[0].plot(X, Y, Z)
-    axs[0].set_box_aspect([1,1,1]) 
-
-    axs[1] = fig.add_subplot(1, 2, 2)
-    axs[1].scatter(Y, Z, color='r', marker='o')
-    axs[1].set_title('2D Scatter Plot')
-    axs[1].set_xlabel('Y-axis')
-    axs[1].set_ylabel('Z-axis')
-    axs[1].grid(True)
-    axs[1].set_aspect('equal', 'box')
-    
-    plt.tight_layout()
-    plt.show()
+    # plt.tight_layout()
+    # plt.show()
