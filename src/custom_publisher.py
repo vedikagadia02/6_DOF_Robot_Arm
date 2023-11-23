@@ -14,13 +14,13 @@ theta1, theta2, theta3, theta4, theta5, theta6 = symbols('theta1 theta2 theta3 t
 a1, a2, a3, a4, a5, a6 = symbols('a1 a2 a3 a4 a5 a6')
 d1, d2, d3, d4, d5, d6 = symbols('d1 d2 d3 d4 d5 d6')
 
-alpha1, alpha2, alpha3, alpha4, alpha5, alpha6 = pi/2, 0, pi/2, -pi/2, pi/2, 0
-a1, a2, a3, a4, a5, a6 = -0.5, -2, 0.6, 0, 0, 0
-d1, d2, d3, d4, d5, d6 = 2.9, 0, 0, 0.875, 0, 1.3
+alpha1, alpha2, alpha3, alpha4, alpha5, alpha6 = -pi/2, 0, -pi/2, -pi/2, pi/2, 0
+a1, a2, a3, a4, a5, a6 = -50, -200, 60, 0, 0, 0
+d1, d2, d3, d4, d5, d6 = 290, 0, 0, 87.5, 0, 130
 theta1, theta2, theta3, theta4, theta5, theta6 = 0, pi/2, 0, 0, 0, 0
-radius = 0.75
+radius = 75
 dt = 0.01
-num_steps = 500
+num_steps = 100
 # duration = 10.0
 
 def circleTrajectory(r, x, y, z):
@@ -103,14 +103,12 @@ def computeJacobian(theta):
 
 def move_to_points():
 
-    rate_q1 = rospy.Rate(1)
-    rate_q2 = rospy.Rate(2)
     rate = rospy.Rate(2)
-    q1 = np.arange(0, 6.283, 0.5)   
-    q2 = np.arange(0, 6.283, 0.5)
 
     while (not rospy.is_shutdown()):
         for i in range(len(joint_angles[1])):
+            if i==0: 
+                continue
             [q1, q2, q3, q4, q5, q6] = joint_angles[:, i]
             print(q1, q2, q3, q4, q5, q6)
             pub_joint1_pos.publish(q1)
@@ -129,7 +127,7 @@ def move_to_points():
 
 if __name__ == '__main__':
     try:
-        theta_values, x_values, y_values, z_values = circleTrajectory(radius, 2.675, 0, 4.3)
+        theta_values, x_values, y_values, z_values = circleTrajectory(radius, -267.5, 0, 430)
         vx_values = np.zeros(num_steps)
         vy_values = np.zeros(num_steps)
         vz_values = np.zeros(num_steps)
@@ -139,8 +137,8 @@ if __name__ == '__main__':
         for i in range(num_steps):
             theta = theta_values[i]
             vx_values[i] = 0
-            vy_values[i] = -radius * np.sin(theta) * 1.25663706144
-            vz_values[i] = radius * np.cos(theta) * 1.25663706144
+            vy_values[i] = -radius * np.sin(theta) * 6.28
+            vz_values[i] = radius * np.cos(theta) * 6.28
 
         joint_velocities = np.zeros((6, len(vx_values)))
         joint_angles = np.zeros((6, len(vx_values)))
