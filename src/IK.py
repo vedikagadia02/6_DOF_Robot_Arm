@@ -2,24 +2,26 @@ from sympy import symbols, cos, sin, Matrix, pi, sqrt
 from scipy.linalg import pinv
 import matplotlib.pyplot as plt
 import numpy as np
+# from mpl_toolkits.mplot3d import Axes3D
 
 global joint_angles
 theta1, theta2, theta3, theta4, theta5, theta6 = symbols('theta1 theta2 theta3 theta4 theta5 theta6')
 a1, a2, a3, a4, a5, a6 = symbols('a1 a2 a3 a4 a5 a6')
 d1, d2, d3, d4, d5, d6 = symbols('d1 d2 d3 d4 d5 d6')
 
-alpha1, alpha2, alpha3, alpha4, alpha5, alpha6 = pi/2, 0, pi/2, -pi/2, pi/2, 0
-a1, a2, a3, a4, a5, a6 = -0.5, -2, 0.6, 0, 0, 0
-d1, d2, d3, d4, d5, d6 = 2.9, 0, 0, 0.875, 0, 1.3
+alpha1, alpha2, alpha3, alpha4, alpha5, alpha6 = -pi/2, 0, -pi/2, -pi/2, pi/2, 0
+a1, a2, a3, a4, a5, a6 = 50,200,-60,0,0,0
+d1, d2, d3, d4, d5, d6 = 290,0,0,87.5,0,130
 theta1, theta2, theta3, theta4, theta5, theta6 = 0, pi/2, 0, 0, 0, 0
-radius = 0.75
+theta1_initial,theta2_initial,theta3_initial,theta4_initial,theta5_initial,theta6_initial= 0,-pi/2,0,0,0,0
+radius = 15
 dt = 0.01
-num_steps = 500
+num_steps = 100
 # duration = 10.0
 
 def circleTrajectory(r, x, y, z):
     radius = r
-    theta_values = np.linspace(0, 2*np.pi, num_steps)
+    theta_values = np.linspace(np.pi/2, 2*np.pi+np.pi/2, num_steps)
     x_values = np.zeros(num_steps)
     y_values = np.zeros(num_steps)
     z_values = np.zeros(num_steps)
@@ -94,55 +96,87 @@ def computeJacobian(theta):
 
     return T, J
 
-# if __name__ == '__main__':
-theta_values, x_values, y_values, z_values = circleTrajectory(radius, 2.675, 0, 4.3)
-vx_values = np.zeros(num_steps)
-vy_values = np.zeros(num_steps)
-vz_values = np.zeros(num_steps)
-current_joint_angles = np.array([theta1, theta2, theta3, theta4, theta5, theta6]) 
+if __name__ == '__main__':
+    theta_values, x_values, y_values, z_values = circleTrajectory(radius, 267.5, 0, 430)
+    vx_values = np.zeros(num_steps)
+    vy_values = np.zeros(num_steps)
+    vz_values = np.zeros(num_steps)
+    current_joint_angles = np.array([theta1, theta2, theta3, theta4, theta5, theta6]) 
 
-# Compute x, y, z velocities for each point on the circle
-for i in range(num_steps):
-    theta = theta_values[i]
-    vx_values[i] = 0
-    vy_values[i] = -radius * np.sin(theta) * 1.25663706144
-    vz_values[i] = radius * np.cos(theta) * 1.25663706144
+    # Compute x, y, z velocities for each point on the circle
+    for i in range(num_steps):
+        theta = theta_values[i]
+        vx_values[i] = 0
+        vy_values[i] = -radius * np.sin(theta) * 6.28
+        vz_values[i] = radius * np.cos(theta) * 6.28
 
-joint_velocities = np.zeros((6, len(vx_values)))
-joint_angles = np.zeros((6, len(vx_values)))
-end_effector_positions = []
+    joint_velocities = np.zeros((6, len(vx_values)))
+    joint_angles = np.zeros((6, len(vx_values)))
+    end_effector_positions = []
 
-for i in range(len(vx_values)):
-    T, J = computeJacobian(current_joint_angles)
-    desired_velocity = np.array([vx_values[i], vy_values[i], vz_values[i], 0, 0, 0])
-    J_pinv = pinv(J.astype(float))
-    joint_velocities[:, i] = np.dot(J_pinv, desired_velocity)
-    new_joint_angles = current_joint_angles + joint_velocities[:, i]*dt
-    joint_angles[:, i] = new_joint_angles
-    current_joint_angles = new_joint_angles
-    end_effector_position = T[:3,3]
-    end_effector_positions.append(end_effector_position)
+    for i in range(len(vx_values)):
+        T, J = computeJacobian(current_joint_angles)
+        desired_velocity = np.array([vx_values[i], vy_values[i], vz_values[i], 0, 0, 0])
+        J_pinv = pinv(J.astype(float))
+        joint_velocities[:, i] = np.dot(J_pinv, desired_velocity)
+        new_joint_angles = current_joint_angles + joint_velocities[:, i]*dt
+        joint_angles[:, i] = new_joint_angles
+        current_joint_angles = new_joint_angles
+        end_effector_position = T[:3,3]
+        end_effector_positions.append(end_effector_position)
 
-end_effector_positions_array = np.array(end_effector_positions)
+    end_effector_positions_array = np.array(end_effector_positions)
 
-X = end_effector_positions_array[:, 0]
-Y = end_effector_positions_array[:, 1]
-Z = end_effector_positions_array[:, 2]
+    X = end_effector_positions_array[:, 0]
+    Y = end_effector_positions_array[:, 1]
+    Z = end_effector_positions_array[:, 2]
+        
+    min_values = [-167.5, -20.0783046860607, 118.650787410193]
+    max_values = [-166.540371930615, 9.28330475811871, 150.959493051646]
 
-    # fig, axs = plt.subplots(1, 2, figsize=(10, 5))
+    fig = plt.figure(figsize=(15, 5))
 
-    # axs[0] = fig.add_subplot(1, 2, 1, projection='3d')
-    # axs[0].set_ylim([0, 10])
-    # axs[0].plot(X, Y, Z)
-    # axs[0].set_box_aspect([1,1,1]) 
+    # 3D Scatter Plot
+    ax1 = fig.add_subplot(141, projection='3d')
+    ax1.plot(X, Y, Z)
+    ax1.set_title('3D Scatter Plot')
+    ax1.set_xlabel('X-axis')
+    ax1.set_ylabel('Y-axis')
+    ax1.set_zlabel('Z-axis')
+    ax1.set_xlim([min_values[0], max_values[0]])
+    ax1.set_ylim([min_values[1], max_values[1]])
+    ax1.set_zlim([min_values[2], max_values[2]])
 
-    # axs[1] = fig.add_subplot(1, 2, 2)
-    # axs[1].scatter(Y, Z, color='r', marker='o')
-    # axs[1].set_title('2D Scatter Plot')
-    # axs[1].set_xlabel('Y-axis')
-    # axs[1].set_ylabel('Z-axis')
-    # axs[1].grid(True)
-    # axs[1].set_aspect('equal', 'box')
-    
-    # plt.tight_layout()
-    # plt.show()
+    # 2D Scatter Plot Y vs. Z
+    ax2 = fig.add_subplot(142)
+    ax2.scatter(Y, Z, color='r', marker='o')
+    ax2.set_title('2D Scatter Plot')
+    ax2.set_xlabel('Y-axis')
+    ax2.set_ylabel('Z-axis')
+    ax2.set_xlim([min_values[1], max_values[1]])
+    ax2.set_ylim([min_values[2], max_values[2]])
+    ax2.grid(True)
+
+    # 2D Scatter Plot X vs. Z
+    ax3 = fig.add_subplot(143)
+    ax3.scatter(X, Z, color='r', marker='o')
+    ax3.set_title('2D Scatter Plot')
+    ax3.set_xlabel('X-axis')
+    ax3.set_ylabel('Z-axis')
+    ax3.set_xlim([min_values[0], max_values[0]])
+    ax3.set_ylim([min_values[2], max_values[2]])
+    ax3.grid(True)
+
+    # 2D Scatter Plot X vs. Y
+    ax4 = fig.add_subplot(144)
+    ax4.scatter(X, Y, color='r', marker='o')
+    ax4.set_title('2D Scatter Plot')
+    ax4.set_xlabel('X-axis')
+    ax4.set_ylabel('Y-axis')
+    ax4.set_xlim([min_values[0], max_values[0]])
+    ax4.set_ylim([min_values[1], max_values[1]])
+    ax4.grid(True)
+
+    plt.tight_layout()
+    plt.show()
+
