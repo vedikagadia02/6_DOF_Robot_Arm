@@ -15,9 +15,10 @@ a1, a2, a3, a4, a5, a6 = symbols('a1 a2 a3 a4 a5 a6')
 d1, d2, d3, d4, d5, d6 = symbols('d1 d2 d3 d4 d5 d6')
 
 alpha1, alpha2, alpha3, alpha4, alpha5, alpha6 = -pi/2, 0, -pi/2, -pi/2, pi/2, 0
-a1, a2, a3, a4, a5, a6 = -50, -200, 60, 0, 0, 0
+a1, a2, a3, a4, a5, a6 = 50, 200, -60, 0, 0, 0
 d1, d2, d3, d4, d5, d6 = 290, 0, 0, 87.5, 0, 130
 theta1, theta2, theta3, theta4, theta5, theta6 = 0, pi/2, 0, 0, 0, 0
+theta1_initial,theta2_initial,theta3_initial,theta4_initial,theta5_initial,theta6_initial= 0,-pi/2,0,0,0,0
 radius = 75
 dt = 0.01
 num_steps = 100
@@ -131,7 +132,8 @@ if __name__ == '__main__':
         vx_values = np.zeros(num_steps)
         vy_values = np.zeros(num_steps)
         vz_values = np.zeros(num_steps)
-        current_joint_angles = np.array([theta1, theta2, theta3, theta4, theta5, theta6]) 
+        current_joint_angles = np.array([theta1+theta1_initial, theta2+theta2_initial, theta3+theta3_initial, theta4+theta4_initial, theta5+theta5_initial, theta6+theta6_initial]) 
+        # current_joint_angles = np.array([theta1, theta2, theta3, theta4, theta5, theta6]) 
 
         # Compute x, y, z velocities for each point on the circle
         for i in range(num_steps):
