@@ -1,14 +1,5 @@
 <robot name="chitlits_trial">
-
-<link name="dummy_link">
- <pose>0 0 0 0 0 0</pose>
-</link>
-
-<joint name="dummy_joint" type="fixed">
-    <parent link="dummy_link"/>
-    <child link="base"/>
-</joint>
-
+<link name="world"/>
 <link name="base">
 <visual>
 <origin xyz="0 0 0" rpy="0 -0 0" />
@@ -175,7 +166,7 @@
 <parent link="link5" />
 <child link="link6" />
 <axis xyz="0 0 1"/>
-<limit effort="20000" velocity="0.5" lower="0" upper="6.283185307179586232"/>
+<limit effort="20000" velocity="0.5" lower="-3.141592653589793116" upper="3.141592653589793116"/>
 <dynamics friction="200.0"/>
 
 </joint>
@@ -195,7 +186,7 @@
 <parent link="link3" />
 <child link="link4" />
 <axis xyz="0 0 1"/>
-<limit effort="20000" velocity="0.5" lower="0" upper="6.283185307179586232"/>
+<limit effort="20000" velocity="0.5" lower="-3.141592653589793116" upper="3.141592653589793116"/>
 <dynamics  friction="200.0"/>
 
 </joint>
@@ -205,7 +196,7 @@
 <parent link="link2" />
 <child link="link3" />
 <axis xyz="0 0 1"/>
-<limit effort="1000000" velocity="0.5" lower="0" upper="6.283185307179586232"/>
+<limit effort="1000000" velocity="0.5" lower="-3.141592653589793116" upper="3.141592653589793116"/>
 <dynamics friction="10.0"/>
 
 </joint>
@@ -225,11 +216,17 @@
 <parent link="base" />
 <child link="link1" />
 <axis xyz="0 0 1"/>
-<limit effort="1000000" velocity="0.5" lower="0" upper="6.283185307179586232"/>
+<limit effort="1000000" velocity="0.5" lower="-3.141592653589793116" upper="3.141592653589793116"/>
 <dynamics friction="10.0"/>
 
 </joint>
 
+<joint name="dummy_joint" type="fixed">
+
+    <parent link="world"/>
+    <child link="base"/>
+
+</joint>
 
 
 <transmission name="joint1_trans">

@@ -26,7 +26,7 @@ num_steps = 100
 
 def circleTrajectory(r, x, y, z):
     radius = r
-    theta_values = np.linspace(0, 2*np.pi, num_steps)
+    theta_values = np.linspace(np.pi/2, 2*np.pi+np.pi/2, num_steps)
     x_values = np.zeros(num_steps)
     y_values = np.zeros(num_steps)
     z_values = np.zeros(num_steps)
@@ -104,31 +104,39 @@ def computeJacobian(theta):
 
 def move_to_points():
 
-    rate = rospy.Rate(2)
+
+    rate_joint = rospy.Rate(6)
+
 
     while (not rospy.is_shutdown()):
         for i in range(len(joint_angles[1])):
             if i==0: 
                 continue
             [q1, q2, q3, q4, q5, q6] = joint_angles[:, i]
+            print(f"Iteration number {i}")
             print(q1, q2, q3, q4, q5, q6)
             pub_joint1_pos.publish(q1)
-            rate.sleep()
+            rate_joint.sleep()
+
             pub_joint2_pos.publish(q2)
-            rate.sleep()
+            rate_joint.sleep()
+
             pub_joint3_pos.publish(q3)
-            rate.sleep()
+            rate_joint.sleep()
+
             pub_joint4_pos.publish(q4)
-            rate.sleep()
+            rate_joint.sleep()
+
             pub_joint5_pos.publish(q5)
-            rate.sleep()
+            rate_joint.sleep()
+
             pub_joint6_pos.publish(q6)
-            rate.sleep()
+            rate_joint.sleep()
 
 
 if __name__ == '__main__':
     try:
-        theta_values, x_values, y_values, z_values = circleTrajectory(radius, -267.5, 0, 430)
+        theta_values, x_values, y_values, z_values = circleTrajectory(radius, 267.5, 0, 430)
         vx_values = np.zeros(num_steps)
         vy_values = np.zeros(num_steps)
         vz_values = np.zeros(num_steps)
